@@ -76,7 +76,7 @@
   <span class="reset" id="rst">🔄 عاود تجربة أخرى</span>
 </div>
 <script>
-const URL_API = "https://script.google.com/macros/s/AKfycbywGt185J_aalaA_1HgZg3yMTsZU3R9O_kzkLfff3Q3BuFfyKx2MSlYaPPwWrKqWy3u/exec";
+const URL_API = "https://script.google.com/macros/s/AKfycbznXJvWZ2iVf9w7ugey8XrX3psPeDTLYNnrC82FwZldfKKc2DXXZcgtL3Q4353yJvnl/exec";
 const sel = document.getElementById("convoyeur"), gps = document.getElementById("gps"), snapBtn = document.getElementById("snapBtn"), micBtn = document.getElementById("micBtn"), st = document.getElementById("st"), rst = document.getElementById("rst");
 let photo = null, coords = { lat: null, lng: null }, rec = null, chunks = [], isRec = false, mime = "audio/webm";
 
@@ -148,9 +148,9 @@ async function sendAll(aud) {
     st.innerText = d.message;
     micBtn.innerText = d.status === "ok" ? "✅ تسجلات!" : "❌ وقع خطأ";
     if (d.status !== "ok") micBtn.disabled = false;
-  } catch {
+  } catch (err) {
     st.style.display = "block"; st.style.background = "#7f1d1d";
-    st.innerText = "❌ مشكل فالأنترنت، عاود";
+    st.innerText = "❌ خطأ: " + err.message;
     micBtn.disabled = false; micBtn.innerText = "🎙️ عاود سجل وصيفط";
   }
 }
